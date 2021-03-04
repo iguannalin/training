@@ -273,15 +273,22 @@ function selectBadge(element) {
 }
 
 function displayCert(code, completedBadges, totalBadges) {
-    if(completedBadges === totalBadges) {
-        code = code.sort(function(a, b) {
+    if (completedBadges === totalBadges) {
+        code = code.sort(function (a, b) {
             return a.toString().length - b.toString().length;
         });
         code = code.join(' ');
-        document.getElementById("alert-modal").style.display="block";
-        let alert_text = "Congratulations! You've completed the certification! The code for the certification is below:\n\n" + btoa(code);
-        $('#alert-text').html(alert_text).css('white-space', 'pre-wrap');
-        $('#alert-text').html(alert_text).css('word-wrap', 'break-word');
+        const bannerContainer = document.getElementById("banner-container");
+        const codeContainer = document.createElement('input');
+        codeContainer.readOnly = "";
+        codeContainer.type = "text";
+        codeContainer.value = codeContainer.ariaLabel = btoa(code);
+        bannerContainer.innerHTML = "<p>Congratulations! You've completed the certification! The code for the certification is below:</p>";
+        bannerContainer.appendChild(codeContainer);
+        bannerContainer.style.whiteSpace = "pre-wrap";
+        bannerContainer.style.wordWrap = "break-word";
+        bannerContainer.style.display = "block";
+        bannerContainer.style.marginTop = "10px";
         clearInterval(refresher);
     }
 }
