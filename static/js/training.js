@@ -280,8 +280,9 @@ function displayCert(code, completedBadges, totalBadges) {
         code = code.join(' ');
         const bannerContainer = document.getElementById("banner-container");
         const codeContainer = document.createElement('input');
-        codeContainer.readOnly = "";
+        codeContainer.readOnly = true;
         codeContainer.type = "text";
+        codeContainer.id = "certificate-code";
         codeContainer.value = codeContainer.ariaLabel = btoa(code);
         bannerContainer.innerHTML = "<p>Congratulations! You've completed the certification! The code for the certification is below:</p>";
         bannerContainer.appendChild(codeContainer);
